@@ -17,9 +17,9 @@ class Person:
 
 @pytest.fixture(scope='function')
 def database():
-    db = dataset.connect('sqlite:///:memory:')
-    yield db
-    db.close()
+    connection = dataset.connect('sqlite:///:memory:')
+    yield connection
+    connection.close()
 
 
 @pytest.fixture(scope='function')
