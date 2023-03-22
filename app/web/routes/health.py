@@ -8,6 +8,7 @@ from app.settings import Settings
 router = APIRouter()
 settings = Settings()
 
+
 @router.get(
     '/health',
     summary='Check API health status',
