@@ -1,12 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app.web.schemas import HealthCheckResponse
+from app.web.dependencies import make_settings
 from app.web.utils import check_database
 from app.settings import Settings
 
 
 router = APIRouter()
-settings = Settings()
 
 
 @router.get(
@@ -17,7 +17,9 @@ settings = Settings()
         'up and running.'
     )
 )
-async def health() -> HealthCheckResponse:
+async def health(
+    settings: Settings = Depends(make_settings)
+) -> HealthCheckResponse:
     """
     Check API health status.
 
